@@ -1,0 +1,15 @@
+server:  
+  port: ${PORT:8080}
+
+logging:
+  level:
+    web: ERROR
+    org:
+      springframework:
+        security: DEBUG
+        web:
+          cors: ERROR
+
+data:
+  produto: https://rgr3viiqdl8sikgv.public.blob.vercel-storage.com/produtos-mnboX5IPl6VgG390FECTKqHsD9SkLS.json
+  cliente: https://rgr3viiqdl8sikgv.public.blob.vercel-storage.com/clientes-Vz1U6aR3GTsjb3W8BRJhcNKmA81pVh.json

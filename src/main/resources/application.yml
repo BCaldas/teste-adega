@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+  application:
+    name: digio-adega
+
+server:
+  servlet:
+    context-path: /adega
