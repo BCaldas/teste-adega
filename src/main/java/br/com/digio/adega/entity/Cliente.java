@@ -25,6 +25,6 @@ public class Cliente {
 
     private String cpf;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Compra> compras = new ArrayList<>();
 }

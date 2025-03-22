@@ -1,8 +1,12 @@
 spring:
   profiles:
-    active: @spring.profiles.active@
+    active: local
   application:
     name: digio-adega
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    deserialization:
+      fail-on-unknown-properties: false
 
 server:
   servlet:
