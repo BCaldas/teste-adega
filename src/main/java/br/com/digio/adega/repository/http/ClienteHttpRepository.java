@@ -1,6 +1,6 @@
 package br.com.digio.adega.repository.http;
 
-import br.com.digio.adega.repository.http.dto.ClienteDTO;
+import br.com.digio.adega.repository.http.dto.ClienteMockDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,5 +11,5 @@ import java.util.List;
 public interface ClienteHttpRepository {
 
     @GetMapping
-    ResponseEntity<List<ClienteDTO>> getAllClientes();
+    ResponseEntity<List<ClienteMockDTO>> getAllClientes();
 }

@@ -1,6 +1,6 @@
 package br.com.digio.adega.service;
 
-import br.com.digio.adega.entity.Produto;
+import br.com.digio.adega.domain.entity.Produto;
 
 import java.util.List;
 

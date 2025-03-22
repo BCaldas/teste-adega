@@ -1,6 +1,6 @@
 package br.com.digio.adega.service.impl;
 
-import br.com.digio.adega.entity.Produto;
+import br.com.digio.adega.domain.entity.Produto;
 import br.com.digio.adega.exception.ResourceNotFoundException;
 import br.com.digio.adega.repository.ProdutoRepository;
 import br.com.digio.adega.service.IProdutoService;

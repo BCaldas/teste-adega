@@ -2,10 +2,10 @@ package br.com.digio.adega.repository.http.dto;
 
 import java.util.List;
 
-public record ClienteDTO(
+public record ClienteMockDTO(
 
         String nome,
         String cpf,
-        List<CompraDTO> compras
+        List<CompraMockDTO> compras
 ) {
 }

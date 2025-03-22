@@ -1,6 +1,6 @@
 package br.com.digio.adega.repository.http.dto;
 
-public record CompraDTO(
+public record CompraMockDTO(
 
         Integer quantidade,
         Integer codigo

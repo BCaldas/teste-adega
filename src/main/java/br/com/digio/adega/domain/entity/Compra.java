@@ -1,4 +1,4 @@
-package br.com.digio.adega.entity;
+package br.com.digio.adega.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

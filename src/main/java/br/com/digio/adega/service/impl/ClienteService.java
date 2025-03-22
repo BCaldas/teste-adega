@@ -1,6 +1,6 @@
 package br.com.digio.adega.service.impl;
 
-import br.com.digio.adega.entity.Cliente;
+import br.com.digio.adega.domain.entity.Cliente;
 import br.com.digio.adega.repository.ClienteRepository;
 import br.com.digio.adega.service.IClienteService;
 import lombok.RequiredArgsConstructor;

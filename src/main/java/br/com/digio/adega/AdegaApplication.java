@@ -1,12 +1,12 @@
 package br.com.digio.adega;
 
-import br.com.digio.adega.entity.Cliente;
-import br.com.digio.adega.entity.Compra;
-import br.com.digio.adega.entity.Produto;
+import br.com.digio.adega.domain.entity.Cliente;
+import br.com.digio.adega.domain.entity.Compra;
+import br.com.digio.adega.domain.entity.Produto;
 import br.com.digio.adega.repository.http.ClienteHttpRepository;
 import br.com.digio.adega.repository.http.ProdutoHttpRepository;
-import br.com.digio.adega.repository.http.dto.ClienteDTO;
-import br.com.digio.adega.repository.http.dto.ProdutoDTO;
+import br.com.digio.adega.repository.http.dto.ClienteMockDTO;
+import br.com.digio.adega.repository.http.dto.ProdutoMockDTO;
 import br.com.digio.adega.service.IClienteService;
 import br.com.digio.adega.service.ICompraService;
 import br.com.digio.adega.service.IProdutoService;
@@ -44,36 +44,36 @@ public class AdegaApplication implements ApplicationListener<ApplicationReadyEve
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         log.info("Pegando produtos dos endpoints...");
-        List<ProdutoDTO> produtoListFromEndpoint = produtoHttpRepository.getAllProdutos().getBody();
+        List<ProdutoMockDTO> produtoListFromEndpoint = produtoHttpRepository.getAllProdutos().getBody();
         log.info(objectMapper.writeValueAsString(produtoListFromEndpoint));
 
         log.info("Salvando produtos do endpoint no banco de dados...");
-        var newProdutos = produtoListFromEndpoint.stream().map(produtoDTO -> Produto.builder()
-                        .id(produtoDTO.codigo())
-                        .tipoVinho(produtoDTO.tipoVinho())
-                        .preco(produtoDTO.preco())
-                        .safra(produtoDTO.safra().shortValue())
-                        .anoCompra(produtoDTO.anoCompra().shortValue())
+        var newProdutos = produtoListFromEndpoint.stream().map(produtoMockDTO -> Produto.builder()
+                        .id(produtoMockDTO.codigo())
+                        .tipoVinho(produtoMockDTO.tipoVinho())
+                        .preco(produtoMockDTO.preco())
+                        .safra(produtoMockDTO.safra().shortValue())
+                        .anoCompra(produtoMockDTO.anoCompra().shortValue())
                         .build())
                 .toList();
         produtoService.saveAll(newProdutos);
         log.info("Produtos salvos com sucesso!");
 
         log.info("Pegando clientes e compras dos endpoints...");
-        List<ClienteDTO> clienteListFromEndpoint = clienteHttpRepository.getAllClientes().getBody();
+        List<ClienteMockDTO> clienteListFromEndpoint = clienteHttpRepository.getAllClientes().getBody();
         log.info(objectMapper.writeValueAsString(clienteListFromEndpoint));
 
         log.info("Salvando clientes e compras do endpoint no banco de dados...");
 
-        clienteListFromEndpoint.forEach(clienteDTO -> {
+        clienteListFromEndpoint.forEach(clienteMockDTO -> {
             var newCliente = Cliente.builder()
-                    .nome(clienteDTO.nome())
-                    .cpf(clienteDTO.cpf())
+                    .nome(clienteMockDTO.nome())
+                    .cpf(clienteMockDTO.cpf())
                     .build();
 
             clienteService.save(newCliente);
 
-            var comprasCliente = clienteDTO.compras().stream().map(compraDTO -> {
+            var comprasCliente = clienteMockDTO.compras().stream().map(compraDTO -> {
                         var produto = produtoService.getById(compraDTO.codigo());
                         return Compra.builder()
                                 .produto(produto)

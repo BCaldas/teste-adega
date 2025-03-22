@@ -1,6 +1,7 @@
 package br.com.digio.adega.service.impl;
 
-import br.com.digio.adega.entity.Compra;
+import br.com.digio.adega.domain.dto.CompraDTO;
+import br.com.digio.adega.domain.entity.Compra;
 import br.com.digio.adega.repository.CompraRepository;
 import br.com.digio.adega.service.ICompraService;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +20,10 @@ public class CompraService implements ICompraService {
     @Override
     public List<Compra> saveAll(List<Compra> compras) {
         return compraRepository.saveAll(compras);
+    }
+
+    @Override
+    public List<CompraDTO> getAllOrderedByValue() {
+        return compraRepository.findAllOrderByValorTotalAsc();
     }
 }
