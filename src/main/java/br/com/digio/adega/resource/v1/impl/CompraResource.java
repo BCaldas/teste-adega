@@ -1,7 +1,8 @@
 package br.com.digio.adega.resource.v1.impl;
 
-import br.com.digio.adega.domain.dto.CompraDTO;
 import br.com.digio.adega.resource.v1.ICompraResource;
+import br.com.digio.adega.resource.v1.dto.CompraDTO;
+import br.com.digio.adega.resource.v1.mapper.CompraMapper;
 import br.com.digio.adega.service.ICompraService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,13 @@ public class CompraResource implements ICompraResource {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/compras")
     public ResponseEntity<List<CompraDTO>> compras() {
+
+        var compras = compraService.getAllOrderedByValue();
+
+        var dto = CompraMapper.INSTANCE.toDtoList(compras);
+
         return ResponseEntity
                 .ok()
-                .body(compraService.getAllOrderedByValue());
+                .body(dto);
     }
 }

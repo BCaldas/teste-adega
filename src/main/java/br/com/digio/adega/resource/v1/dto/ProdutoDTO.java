@@ -1,4 +1,4 @@
-package br.com.digio.adega.domain.dto;
+package br.com.digio.adega.resource.v1.dto;
 
 import java.math.BigDecimal;
 

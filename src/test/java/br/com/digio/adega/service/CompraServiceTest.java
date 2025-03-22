@@ -1,6 +1,5 @@
 package br.com.digio.adega.service;
 
-import br.com.digio.adega.domain.dto.CompraDTO;
 import br.com.digio.adega.domain.entity.Cliente;
 import br.com.digio.adega.domain.entity.Compra;
 import br.com.digio.adega.domain.entity.Produto;
@@ -55,13 +54,13 @@ class CompraServiceTest {
 
         mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
 
-        var comprasDtoList = Arrays.asList(mapper.readValue(RETURN_COMPRA_LIST, CompraDTO[].class));
+        var comprasList = Arrays.asList(mapper.readValue(RETURN_COMPRA_LIST, Compra[].class));
 
-        when(compraRepository.findAllOrderByValorTotalAsc()).thenReturn(comprasDtoList);
+        when(compraRepository.findAllByOrderByValorTotalAsc()).thenReturn(comprasList);
 
         var comprasDtoReturn = service.getAllOrderedByValue();
 
-        assertEquals(comprasDtoList, comprasDtoReturn);
+        assertEquals(comprasList, comprasDtoReturn);
 
     }
 

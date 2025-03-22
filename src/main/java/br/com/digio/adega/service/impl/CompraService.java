@@ -1,6 +1,5 @@
 package br.com.digio.adega.service.impl;
 
-import br.com.digio.adega.domain.dto.CompraDTO;
 import br.com.digio.adega.domain.entity.Compra;
 import br.com.digio.adega.repository.CompraRepository;
 import br.com.digio.adega.service.ICompraService;
@@ -23,7 +22,7 @@ public class CompraService implements ICompraService {
     }
 
     @Override
-    public List<CompraDTO> getAllOrderedByValue() {
-        return compraRepository.findAllOrderByValorTotalAsc();
+    public List<Compra> getAllOrderedByValue() {
+        return compraRepository.findAllByOrderByValorTotalAsc();
     }
 }
