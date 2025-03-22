@@ -42,4 +42,14 @@ class CompraResourceTest {
 
         verify(comprasService).getAllOrderedByValue();
     }
+
+    @Test
+    @SneakyThrows
+    void getTopCompraByAno_Ok() {
+        mockMvc.perform(get("/v1/maior-compra/2020")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        verify(comprasService).getTopCompraByAno(Short.valueOf("2020"));
+    }
 }
