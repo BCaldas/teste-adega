@@ -12,5 +12,7 @@ public interface CompraMapper {
 
     CompraMapper INSTANCE = Mappers.getMapper(CompraMapper.class);
 
-    List<CompraDTO> toDtoList(List<Compra> compra);
+    List<CompraDTO> toDtoList(List<Compra> compraList);
+
+    CompraDTO toDto(Compra compra);
 }

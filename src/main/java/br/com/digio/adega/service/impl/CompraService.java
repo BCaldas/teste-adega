@@ -1,6 +1,7 @@
 package br.com.digio.adega.service.impl;
 
 import br.com.digio.adega.domain.entity.Compra;
+import br.com.digio.adega.exception.ResourceNotFoundException;
 import br.com.digio.adega.repository.CompraRepository;
 import br.com.digio.adega.service.ICompraService;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,10 @@ public class CompraService implements ICompraService {
     @Override
     public List<Compra> getAllOrderedByValue() {
         return compraRepository.findAllByOrderByValorTotalAsc();
+    }
+
+    @Override
+    public Compra getTopCompraByAno(Short ano) {
+        return compraRepository.findFirstByProdutoAnoCompraOrderByValorTotalDesc(ano).orElseThrow(ResourceNotFoundException::new);
     }
 }

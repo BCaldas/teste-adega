@@ -1,5 +1,6 @@
 package br.com.digio.adega.exception;
 
+//TODO: Tratar essa exceção
 public class ResourceNotFoundException extends RuntimeException {
 
     public ResourceNotFoundException() {

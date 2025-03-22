@@ -8,4 +8,6 @@ public interface ICompraService {
     List<Compra> saveAll(List<Compra> compras);
 
     List<Compra> getAllOrderedByValue();
+
+    Compra getTopCompraByAno(Short ano);
 }
