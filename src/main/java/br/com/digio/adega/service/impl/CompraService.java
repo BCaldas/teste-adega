@@ -29,6 +29,10 @@ public class CompraService implements ICompraService {
 
     @Override
     public Compra getTopCompraByAno(Short ano) {
-        return compraRepository.findFirstByProdutoAnoCompraOrderByValorTotalDesc(ano).orElseThrow(() -> new ResourceNotFoundException("Compra não encontrada para o ano " + ano));
+        return compraRepository.findFirstByProdutoAnoCompraOrderByValorTotalDesc(ano).orElseThrow(() -> {
+            var msg = "Compra não encontrada para o ano " + ano;
+            log.error(msg);
+            return new ResourceNotFoundException(msg);
+        });
     }
 }

@@ -1,6 +1,5 @@
-package br.com.digio.adega.resource.v1.impl;
+package br.com.digio.adega.resource.v1;
 
-import br.com.digio.adega.resource.v1.ICompraResource;
 import br.com.digio.adega.resource.v1.dto.CompraDTO;
 import br.com.digio.adega.resource.v1.mapper.CompraMapper;
 import br.com.digio.adega.service.ICompraService;
@@ -14,13 +13,13 @@ import java.util.List;
 @RequestMapping("/v1")
 @RestController
 @RequiredArgsConstructor
-public class CompraResource implements ICompraResource {
+public class CompraResource {
 
     private final ICompraService compraService;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/compras")
-    public ResponseEntity<List<CompraDTO>> compras() {
+    public ResponseEntity<List<CompraDTO>> getAllCompras() {
 
         var dto = CompraMapper.INSTANCE.toDtoList(compraService.getAllOrderedByValue());
         return ResponseEntity
@@ -30,7 +29,7 @@ public class CompraResource implements ICompraResource {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/maior-compra/{ano}")
-    public ResponseEntity<CompraDTO> compras(@PathVariable Short ano) {
+    public ResponseEntity<CompraDTO> getBiggerCompraByYear(@PathVariable Short ano) {
 
         var dto = CompraMapper.INSTANCE.toDto(compraService.getTopCompraByAno(ano));
         return ResponseEntity

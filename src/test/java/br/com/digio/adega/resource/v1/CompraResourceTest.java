@@ -1,6 +1,5 @@
 package br.com.digio.adega.resource.v1;
 
-import br.com.digio.adega.resource.v1.impl.CompraResource;
 import br.com.digio.adega.service.impl.CompraService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
