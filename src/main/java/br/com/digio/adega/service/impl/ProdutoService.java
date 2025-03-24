@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -23,8 +22,8 @@ public class ProdutoService implements IProdutoService {
     private final ICompraService compraService;
 
     @Override
-    public void saveAll(List<Produto> produtos) {
-        produtoRepository.saveAll(produtos);
+    public List<Produto> saveAll(List<Produto> produtos) {
+        return produtoRepository.saveAll(produtos);
     }
 
     @Override
@@ -39,14 +38,14 @@ public class ProdutoService implements IProdutoService {
     @Override
     public Produto recommendWineToClient(Integer clienteId) {
 
-        //TODO: Caso todas as compras do cliente sejam da mesma quantidade, randomizar a compra escolhida para basear a recomendação
+        //TODO: Caso mais de uma compra do cliente seja da mesma quantidade, randomizar a compra escolhida para basear a recomendação
 
         log.info("Buscando os tipos de vinhos comprados pelo cliente " + clienteId);
         var purchasedWines = compraService.getMostPurchasedWineTypeByClient(clienteId);
 
         if (purchasedWines.isEmpty()) {
             log.info("Não foi encontrada nenhuma compra para o cliente " + clienteId);
-            throw new ResourceNotFoundException("Não foi possível encontrar uma recomendação");
+            throw new ResourceNotFoundException("Não foi possível encontrar uma recomendação. Cliente não possui compras");
         }
 
         var mostPurhasedType = purchasedWines.get(0);
@@ -56,10 +55,14 @@ public class ProdutoService implements IProdutoService {
 
     private Produto getRandomWineByType(String tipoVinho) {
 
-        return Optional.of(produtoRepository.findRandomWineByType(tipoVinho, Pageable.ofSize(1)).get(0)).orElseThrow(() -> {
+        var produtosReturned = produtoRepository.findRandomWineByType(tipoVinho, Pageable.ofSize(1));
+
+        if (produtosReturned.isEmpty()) {
             var msg = "Nenhum vinho encontrado para o tipo " + tipoVinho;
             log.error(msg);
-            return new ResourceNotFoundException(msg);
-        });
+            throw new ResourceNotFoundException(msg);
+        }
+
+        return produtosReturned.get(0);
     }
 }

@@ -5,7 +5,7 @@ import br.com.digio.adega.domain.entity.Produto;
 import java.util.List;
 
 public interface IProdutoService {
-    void saveAll(List<Produto> produtos);
+    List<Produto> saveAll(List<Produto> produtos);
 
     Produto getById(Integer id);
 
