@@ -1,6 +1,16 @@
 # Teste Adega
 Projeto criado para o teste da empresa Digio, simulando um microserviço para uma adega.
 
+## Features
+### Endpoints
+- GET: `/compras` - Retornar uma lista das compras ordenadas de forma crescente por valor, deve conter o nome dos clientes, cpf dos clientes, dado dos produtos, quantidade das compras e valores totais de cada compra.
+- GET: `/compras/maior-compra/ano` - (Exemplo: /maior_compra/2016) - Retornar a maior compra do ano informando os dados da compra disponibilizados, deve ter o nome do cliente, cpf do cliente, dado do produto, quantidade da compra e seu valor total.
+- GET: `/clientes/clientes-fieis` - Retornar o Top 3 clientes mais fieis, clientes que possuem mais compras recorrentes com maiores valores.
+- GET: `/produtos/recomendacao/cliente/tipo` - Retornar uma recomendação de vinho baseado nos tipos de vinho que o cliente mais compra.
+
+### Automatização
+- Popolução do Banco de Dados durante a inicialização da aplicação.
+
 ## Principais Tecnologias Utilizadas
 
 - Java 17
