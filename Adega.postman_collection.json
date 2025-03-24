@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "caa3a21c-fb94-4e57-9e44-d9a5b26bc8e4",
+		"name": "Adega",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1317250"
+	},
+	"item": [
+		{
+			"name": "Lista de Compras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/adega/v1/compras",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"adega",
+						"v1",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Maior Compra por Ano",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/adega/v1/maior-compra/2020",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"adega",
+						"v1",
+						"maior-compra",
+						"2020"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clientes Fiéis",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/adega/v1/clientes-fieis",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"adega",
+						"v1",
+						"clientes-fieis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recomendação de Vinho",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/adega/v1/recomendacao/cliente/tipo?cliente_id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"adega",
+						"v1",
+						"recomendacao",
+						"cliente",
+						"tipo"
+					],
+					"query": [
+						{
+							"key": "cliente_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
