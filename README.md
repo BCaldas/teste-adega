@@ -1,2 +1,4 @@
-# teste-adega
-Teste de código para a empresa Digio
+# Teste Adega
+Projeto criado para o teste da empresa Digio, simulando um microserviço para uma adega.
+
+

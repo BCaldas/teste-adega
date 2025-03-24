@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/v1")
+@RequestMapping("/v1/compras")
 @RestController
 @RequiredArgsConstructor
 public class CompraResource {
@@ -18,7 +18,7 @@ public class CompraResource {
     private final ICompraService compraService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/compras")
+    @GetMapping()
     public ResponseEntity<List<CompraDTO>> getAllCompras() {
 
         var dto = CompraMapper.INSTANCE.toDtoList(compraService.getAllOrderedByValue());

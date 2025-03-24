@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/v1")
+@RequestMapping("/v1/produtos")
 @RestController
 @RequiredArgsConstructor
 public class ProdutoResource {

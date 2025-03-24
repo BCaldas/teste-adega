@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/v1")
+@RequestMapping("/v1/clientes")
 @RestController
 @RequiredArgsConstructor
 public class ClienteResource {
