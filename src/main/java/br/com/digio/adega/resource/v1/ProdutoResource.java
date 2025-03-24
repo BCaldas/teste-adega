@@ -17,7 +17,7 @@ public class ProdutoResource {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/recomendacao/cliente/tipo")
-    public ResponseEntity<ProdutoDTO> getRecomendacao(@RequestParam("cliente_id") Integer clienteId) {
+    public ResponseEntity<ProdutoDTO> getRecommendation(@RequestParam("cliente_id") Integer clienteId) {
 
         var dto = ProdutoMapper.INSTANCE.toDto(produtoService.recommendWineToClient(clienteId));
         return ResponseEntity
