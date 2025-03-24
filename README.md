@@ -11,6 +11,10 @@ Projeto criado para o teste da empresa Digio, simulando um microserviço para um
 ### Automatização
 - Popolução do Banco de Dados durante a inicialização da aplicação.
 
+## Melhorias
+- [ ] Mudar id para uuid
+- [ ] Tratamento personalizado em caso de erro de negócio
+- [ ] Health Check
 ## Principais Tecnologias Utilizadas
 
 - Java 17
