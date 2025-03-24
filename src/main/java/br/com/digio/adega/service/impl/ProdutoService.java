@@ -38,19 +38,17 @@ public class ProdutoService implements IProdutoService {
     @Override
     public Produto recommendWineToClient(Integer clienteId) {
 
-        //TODO: Caso mais de uma compra do cliente seja da mesma quantidade, randomizar a compra escolhida para basear a recomendação
-
         log.info("Buscando os tipos de vinhos comprados pelo cliente " + clienteId);
-        var purchasedWines = compraService.getMostPurchasedWineTypeByClient(clienteId);
+        var purchasedWines = compraService.getRandomMostPurchasedWineTypeByClient(clienteId, Pageable.ofSize(1));
 
         if (purchasedWines.isEmpty()) {
             log.info("Não foi encontrada nenhuma compra para o cliente " + clienteId);
             throw new ResourceNotFoundException("Não foi possível encontrar uma recomendação. Cliente não possui compras");
         }
 
-        var mostPurhasedType = purchasedWines.get(0);
+        var mostPurchasedType = purchasedWines.get(0);
 
-        return getRandomWineByType(mostPurhasedType.tipoVinho());
+        return getRandomWineByType(mostPurchasedType);
     }
 
     private Produto getRandomWineByType(String tipoVinho) {

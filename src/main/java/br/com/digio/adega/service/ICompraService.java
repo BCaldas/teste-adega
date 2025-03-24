@@ -1,7 +1,7 @@
 package br.com.digio.adega.service;
 
 import br.com.digio.adega.domain.entity.Compra;
-import br.com.digio.adega.repository.model.PurchasedWine;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -12,5 +12,7 @@ public interface ICompraService {
 
     Compra getTopCompraByAno(Short ano);
 
-    List<PurchasedWine> getMostPurchasedWineTypeByClient(Integer clientId);
+    List<String> getRandomMostPurchasedWineTypeByClient(Integer clienteId, Pageable pageable);
+
+//    List<PurchasedWine> getMostPurchasedWineTypeByClient(Integer clientId);
 }

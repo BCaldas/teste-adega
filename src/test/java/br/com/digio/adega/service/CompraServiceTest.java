@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -90,5 +91,16 @@ class CompraServiceTest {
         when(compraRepository.findFirstByProdutoAnoCompraOrderByValorTotalDesc(any())).thenReturn(Optional.empty());
 
         assertThrows(ResourceNotFoundException.class, () -> service.getTopCompraByAno(Short.valueOf("2020")));
+    }
+
+    @Test
+    void getRandomMostPurchasedWineTypeByClient_Ok() {
+        var mockWineTypes = Arrays.asList("Tinto", "Branco");
+
+        when(compraRepository.findRandomMostPurchasedWineTypeByClient(any(), any())).thenReturn(mockWineTypes);
+
+        var returnedWineTypes = service.getRandomMostPurchasedWineTypeByClient(1, Pageable.ofSize(2));
+
+        assertEquals(mockWineTypes, returnedWineTypes);
     }
 }

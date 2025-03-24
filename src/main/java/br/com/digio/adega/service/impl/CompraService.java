@@ -3,10 +3,10 @@ package br.com.digio.adega.service.impl;
 import br.com.digio.adega.domain.entity.Compra;
 import br.com.digio.adega.exception.ResourceNotFoundException;
 import br.com.digio.adega.repository.CompraRepository;
-import br.com.digio.adega.repository.model.PurchasedWine;
 import br.com.digio.adega.service.ICompraService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,8 +37,14 @@ public class CompraService implements ICompraService {
         });
     }
 
+    //TODO: Teste
     @Override
-    public List<PurchasedWine> getMostPurchasedWineTypeByClient(Integer clientId) {
-        return compraRepository.findMostPurchasedWineTypeByClient(clientId);
+    public List<String> getRandomMostPurchasedWineTypeByClient(Integer clienteId, Pageable pageable) {
+        return compraRepository.findRandomMostPurchasedWineTypeByClient(clienteId, pageable);
     }
+
+//    @Override
+//    public List<PurchasedWine> getMostPurchasedWineTypeByClient(Integer clientId) {
+//        return compraRepository.findMostPurchasedWineTypeByClient(clientId);
+//    }
 }

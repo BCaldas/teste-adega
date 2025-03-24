@@ -3,7 +3,6 @@ package br.com.digio.adega.service;
 import br.com.digio.adega.domain.entity.Produto;
 import br.com.digio.adega.exception.ResourceNotFoundException;
 import br.com.digio.adega.repository.ProdutoRepository;
-import br.com.digio.adega.repository.model.PurchasedWine;
 import br.com.digio.adega.service.impl.CompraService;
 import br.com.digio.adega.service.impl.ProdutoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -71,10 +71,10 @@ class ProdutoServiceTest {
 
     @Test
     void recommendWineToClient_Ok() {
-        var mockPurchasedWines = Arrays.asList(new PurchasedWine("Tinto", 3L), new PurchasedWine("Branco", 1L));
-        var mockRandomizedWine = Arrays.asList(new Produto(1, "Tinto", BigDecimal.valueOf(100.00), Short.valueOf("1800"), Short.valueOf("2024")));
+        var mockPurchasedWines = List.of("Tinto");
+        var mockRandomizedWine = List.of(new Produto(1, "Tinto", BigDecimal.valueOf(100.00), Short.valueOf("1800"), Short.valueOf("2024")));
 
-        when(compraService.getMostPurchasedWineTypeByClient(any())).thenReturn(mockPurchasedWines);
+        when(compraService.getRandomMostPurchasedWineTypeByClient(any(), any())).thenReturn(mockPurchasedWines);
         when(produtoRepository.findRandomWineByType(any(), any())).thenReturn(mockRandomizedWine);
 
         var expected = new Produto(1, "Tinto", BigDecimal.valueOf(100.00), Short.valueOf("1800"), Short.valueOf("2024"));
@@ -85,9 +85,9 @@ class ProdutoServiceTest {
 
     @Test
     void recommendWineToClient_ClientWithoutPurchase() {
-        var mockPurchasedWines = new ArrayList<PurchasedWine>();
+        var mockPurchasedWines = new ArrayList<String>();
 
-        when(compraService.getMostPurchasedWineTypeByClient(any())).thenReturn(mockPurchasedWines);
+        when(compraService.getRandomMostPurchasedWineTypeByClient(any(), any())).thenReturn(mockPurchasedWines);
 
         Exception exception = assertThrows(ResourceNotFoundException.class, () -> service.recommendWineToClient(1));
         var expectedMessage = "Não foi possível encontrar uma recomendação. Cliente não possui compras";
@@ -97,9 +97,9 @@ class ProdutoServiceTest {
 
     @Test
     void recommendWineToClient_WineTypeNotFound() {
-        var mockPurchasedWines = Arrays.asList(new PurchasedWine("Tinto", 3L), new PurchasedWine("Branco", 1L));
+        var mockPurchasedWines = List.of("Tinto");
 
-        when(compraService.getMostPurchasedWineTypeByClient(any())).thenReturn(mockPurchasedWines);
+        when(compraService.getRandomMostPurchasedWineTypeByClient(any(), any())).thenReturn(mockPurchasedWines);
         when(produtoRepository.findRandomWineByType(any(), any())).thenReturn(new ArrayList<>());
 
         Exception exception = assertThrows(ResourceNotFoundException.class, () -> service.recommendWineToClient(1));
