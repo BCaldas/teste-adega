@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: digio-adega
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/adega
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    networks:
+      - minha-rede
+
+  mariadb:
+    image: mariadb:latest
+    container_name: digio-adega-bd
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: adega
+      MARIADB_USER: root
+      MARIADB_PASSWORD: root
+    ports:
+      - "3306:3306"
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge
