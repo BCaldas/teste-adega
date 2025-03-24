@@ -42,9 +42,4 @@ public class CompraService implements ICompraService {
     public List<String> getRandomMostPurchasedWineTypeByClient(Integer clienteId, Pageable pageable) {
         return compraRepository.findRandomMostPurchasedWineTypeByClient(clienteId, pageable);
     }
-
-//    @Override
-//    public List<PurchasedWine> getMostPurchasedWineTypeByClient(Integer clientId) {
-//        return compraRepository.findMostPurchasedWineTypeByClient(clientId);
-//    }
 }

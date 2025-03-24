@@ -15,13 +15,6 @@ public interface CompraRepository extends JpaRepository<Compra, Integer> {
 
     Optional<Compra> findFirstByProdutoAnoCompraOrderByValorTotalDesc(Short ano);
 
-//    @Query("SELECT new br.com.digio.adega.repository.model.PurchasedWine(c.produto.tipoVinho, COUNT(c.produto.tipoVinho)) " +
-//            "FROM Compra c " +
-//            "WHERE c.cliente.id = :clienteId " +
-//            "GROUP BY c.produto.tipoVinho " +
-//            "ORDER BY COUNT(c.produto.tipoVinho) DESC")
-//    List<PurchasedWine> findMostPurchasedWineTypeByClient(@Param("clienteId") Integer clienteId);
-
     @Query("SELECT p.tipoVinho FROM Produto p " +
             "WHERE p.tipoVinho IN (" +
             "   SELECT p2.tipoVinho FROM Compra c2 " +
