@@ -45,7 +45,7 @@ class CompraResourceTest {
     @Test
     @SneakyThrows
     void getTopCompraByAno_Ok() {
-        mockMvc.perform(get("/v1/maior-compra/2020")
+        mockMvc.perform(get("/v1/compras/maior-compra/2020")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 

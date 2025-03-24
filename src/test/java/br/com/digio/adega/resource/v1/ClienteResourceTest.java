@@ -1,6 +1,6 @@
 package br.com.digio.adega.resource.v1;
 
-import br.com.digio.adega.service.impl.CompraService;
+import br.com.digio.adega.service.impl.ClienteService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,33 +22,23 @@ class ClienteResourceTest {
     public MockMvc mockMvc;
 
     @InjectMocks
-    private CompraResource compraResource;
+    private ClienteResource clienteResource;
 
     @Mock
-    private CompraService comprasService;
+    private ClienteService clienteService;
 
     @BeforeEach
     void init() {
-        mockMvc = standaloneSetup(compraResource).build();
+        mockMvc = standaloneSetup(clienteResource).build();
     }
 
     @Test
     @SneakyThrows
-    void getListOfCompra_Ok() {
-        mockMvc.perform(get("/v1/compras")
+    void getLoyalClientes_Ok() {
+        mockMvc.perform(get("/v1/clientes/clientes-fieis")
                 .contentType(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk());
 
-        verify(comprasService).getAllOrderedByValue();
-    }
-
-    @Test
-    @SneakyThrows
-    void getTopCompraByAno_Ok() {
-        mockMvc.perform(get("/v1/maior-compra/2020")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        verify(comprasService).getTopCompraByAno(Short.valueOf("2020"));
+        verify(clienteService).getTop3Clientes();
     }
 }
