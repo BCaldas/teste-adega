@@ -3,6 +3,7 @@ package br.com.digio.adega.service.impl;
 import br.com.digio.adega.domain.entity.Compra;
 import br.com.digio.adega.exception.ResourceNotFoundException;
 import br.com.digio.adega.repository.CompraRepository;
+import br.com.digio.adega.repository.model.PurchasedWine;
 import br.com.digio.adega.service.ICompraService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,5 +35,10 @@ public class CompraService implements ICompraService {
             log.error(msg);
             return new ResourceNotFoundException(msg);
         });
+    }
+
+    @Override
+    public List<PurchasedWine> getMostPurchasedWineTypeByClient(Integer clientId) {
+        return compraRepository.findMostPurchasedWineTypeByClient(clientId);
     }
 }

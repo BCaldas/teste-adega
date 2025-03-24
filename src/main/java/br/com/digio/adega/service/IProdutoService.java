@@ -8,4 +8,6 @@ public interface IProdutoService {
     void saveAll(List<Produto> produtos);
 
     Produto getById(Integer id);
+
+    Produto recommendWineToClient(Integer clienteId);
 }
